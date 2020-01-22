@@ -28,6 +28,12 @@
             zoom: 15,
             mapTypeId: 'hybrid'
         });
+        var marker = new google.maps.Marker({
+            position: {lat: 44.341, lng: -78.7431482},
+            map: map,
+            draggable: true,
+            title: 'Drag Me'
+        });
     }
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBjat9Xn4ZpPrnQs6PjHRFhQtokwPeWyas&callback=initMap"
