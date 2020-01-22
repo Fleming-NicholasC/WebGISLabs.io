@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--Player data From torontofc.ca and locations from google-->
+    <!--Team Colours from https://teamcolorcodes.com/category/soccer-football-color-codes/mls-team-color-codes/page/2/-->
+    <meta charset="UTF-8">
+    <title>Toronto FC Hometowns</title>
+    <style>
+        /* Set the size of the div element that contains the map */
+        #map {
+            height: 850px;  /* The height is 870 pixels */
+            width: 90%;  /* The width is the width of the web page */
+            margin: auto;
+            border-radius: 1.5%;
+            border: #a3aaad solid 0.5rem;
+        }
+
+        html, body {
+            background-color: #3f4743;
+            color:#ab1e2d;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        h1{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<h1>Toronto FC: Players' Hometowns</h1>
+
+<!--The div element for the map -->
+<div id="map"></div>
+<script>
+    function initMap() {
+
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 2.75,
+            center: {lat: 8, lng: 0}
+        });
+        // Create an array of Player Names
+        var labels = ["Ayo Akinola","Jozy Altidore","Auro Jr.","Alex Bono","Michael Bradley","Laurent Ciman","Nick DeLeon","Marky Delgado","Griffin Dorsey","Julian Dunn","Tsubasa Endoh","Liam Fraser","Erickson Gallardo","Omar Gonzalez","Richie Laryea","Chris Mavinga","Justin Morrow","Patrick Mullins","Noble Okello","Jonathan Osorio","Alejandro Pozuelo","Jacob Shaffelburg","Quentin Westberg","Eriq Zavaleta"];
+
+        // Add some markers to the map.
+        var markers = locations.map(function(location, i) {
+            return new google.maps.Marker({
+                position: location,
+                title: labels[i % labels.length],
+                label: labels[i % labels.length]
+            });
+        });
+
+        // Add a marker clusterer to manage the markers.
+        var markerCluster = new MarkerClusterer(map, markers,
+            {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
+    }
+
+    //List Locations
+    var locations = [
+        //Brampton, Ontario
+        {lat: 43.7325, lng: -79.7624},
+        //Livingston, New Jersey
+        {lat: 40.7863, lng: -74.3301},
+        //Sao Paulo, Brazil
+        {lat: -23.5505, lng: -46.6333},
+        //Baldwinsville, New York
+        {lat:43.1587, lng: -76.3327},
+        //Princeton, New Jersey
+        {lat:40.3573, lng: -74.6672},
+        //Liège, Belgium
+        {lat: 50.6326, lng: 5.5797},
+        //Phoenix, Arizona
+        {lat: 33.4484, lng: -112.0740 },
+        //Glendora, California
+        {lat: 34.1361, lng: -117.8653},
+        //Evergreen, Colorado
+        {lat: 39.6333, lng: -105.3172},
+        //Toronto, Ontario
+        {lat: 43.6532, lng: -79.3832},
+        //Tokyo, Japan
+        {lat: 35.6762, lng: 139.6503},
+        //Toronto, Ontario
+        {lat: 43.655, lng: -79.4},
+        //Barinas, Venezuela
+        {lat: 8.6231, lng: -70.2371},
+        //Dallas, Texas
+        {lat: 32.7767, lng: -96.7970},
+        //Toronto, Ontario
+        {lat: 43.645, lng: -79.4},
+        //Meaux, France
+        {lat: 48.9562, lng: 2.8885},
+        //Cleveland, Ohio
+        {lat: 41.4993, lng: -81.6944},
+        //New Orleans, Louisiana
+        {lat: 29.9511, lng: -90.0715},
+         //Toronto, Ontario
+        {lat: 43.6508, lng: -79.3725},
+        //Brampton, Ontario
+        {lat: 43.72, lng: -79.76},
+        //Seville, Spain
+        {lat: 37.3891, lng: -5.9845},
+        //Port Williams, Nova Scotia
+        {lat: 45.0980, lng: -64.4100},
+        //Westfield, Indiana
+        {lat: 40.0428, lng: -86.1275}
+    ]
+</script>
+<script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">
+</script>
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBjat9Xn4ZpPrnQs6PjHRFhQtokwPeWyas&callback=initMap">
+</script>
+
+</body>
+</html>
