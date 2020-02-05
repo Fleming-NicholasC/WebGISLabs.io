@@ -33,7 +33,7 @@
                 container: "viewDiv",
                 map: map,
                 camera: {
-                    position: {  // observation point
+                    position: {  // observation point (Mt Everest)
                         x: 86.9250,
                         y: 27.8450,
                         z: 15500 // altitude in meters
@@ -55,6 +55,7 @@
             view.ui.add(basemapGallery, "bottom-left"); // Add to the view
             var graphicsLayer = new GraphicsLayer();
             map.add(graphicsLayer);
+
             // Create a point
             var point = {
                 type: "point",
