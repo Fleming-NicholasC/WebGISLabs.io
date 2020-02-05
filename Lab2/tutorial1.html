@@ -19,8 +19,10 @@
             "esri/Map",
             "esri/views/SceneView",
             "esri/widgets/BasemapToggle",
-            "esri/widgets/BasemapGallery"
-        ], function(Map, SceneView, BasemapToggle, BasemapGallery) {
+            "esri/widgets/BasemapGallery",
+            "esri/Graphic",
+            "esri/layers/GraphicsLayer"
+        ], function(Map, SceneView, BasemapToggle, BasemapGallery, Graphic, GraphicsLayer) {
 
             var map = new Map({
                 basemap: "topo-vector",
@@ -51,6 +53,29 @@
             });
 
             view.ui.add(basemapGallery, "bottom-left"); // Add to the view
+            var graphicsLayer = new GraphicsLayer();
+            map.add(graphicsLayer);
+            // Create a point
+            var point = {
+                type: "point",
+                longitude: 86.9250,
+                latitude: 27.9881,
+            };
+            var simpleMarkerSymbol = {
+                type: "simple-marker",
+                color: [226, 119, 40],  // orange
+                outline: {
+                    color: [255, 255, 255], // white
+                    width: 1
+                }
+            };
+
+            var pointGraphic = new Graphic({
+                geometry: point,
+                symbol: simpleMarkerSymbol
+            });
+
+            graphicsLayer.add(pointGraphic);
         });
     </script>
 </head>
