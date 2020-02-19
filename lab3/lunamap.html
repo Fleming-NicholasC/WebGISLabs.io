@@ -1,0 +1,89 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>ArcGIS JavaScript Tutorials: Display a Web Map</title>
+    <style>
+        #viewDiv {
+            padding: 0;
+            margin: auto;
+            height: 100%;
+            width: 95%;
+            border: #333333 solid 0.25rem;
+        }
+
+        #info{
+            padding-left: 3rem;
+        }
+
+        h1{
+            font-size: 4rem;
+        }
+        p{
+            font-size: 1.5rem;
+        }
+        .center{
+            padding-top: 1.5rem;
+            padding-bottom: 1.5rem;
+            text-align: center;
+            margin: auto;
+            font-size: 1rem;
+        }
+    </style>
+    <link rel="stylesheet" href="https://js.arcgis.com/4.13/esri/css/main.css">
+    <script src="https://js.arcgis.com/4.13/"></script>
+    <script>
+        require([
+                "esri/Map",
+                "esri/views/MapView",
+                "esri/layers/FeatureLayer"
+            ],
+            function(
+                Map,
+                MapView,
+                FeatureLayer
+            ) {
+
+                var map = new Map({
+                    basemap: "topo-vector"
+                });
+
+                var view = new MapView({
+                    container: "viewDiv",
+                    map: map,
+                    center: [-106.3468,64.5],
+                    zoom: 4
+                });
+
+                // Define a popup for Provinces
+                var popupProvinces = {
+                    "title": "Province",
+                    "content": "<b>Province:</b> {PRENAME}<br><b>French Name:</b> {PRFName}<br><b>English Abbreviation:</b> {PREABBR}<br><b>French Abbreviation:</b> {PRFABBR}<br><b>Area:</b> {Shape_STAr} m2"
+                }
+
+                // Create the layer and set the popup
+                var Provinces = new FeatureLayer({
+                    url: "https://luna.flemingcollege.ca/arcgis/rest/services/Geom99on/NiconnelCanadaPro/MapServer/0&token=4JDm_wsq3zQ9cD9b3G89FJLQyveFwVLsH12P45Oa-hAMaXx3RunKUA5Ih-hjwMfN5HnVQfbgfksHtYx1Q7BaJQ",
+                    outFields: ["PRENAME","PRFNAME","PREABBR","PRFABBR","Shape_STAr"],
+                    popupTemplate: popupProvinces
+                });
+
+                // Add the layer
+                map.add(Provinces);
+
+            });
+
+    </script>
+</head>
+<body>
+<div id="info">
+    <h1>Provinces of Canada Interactive Guide</h1>
+    <p>Click on a Province to see more information.</p>
+</div>
+<div id="viewDiv"></div>
+<p class="center">Web App was created using the tutorial from <a href="https://developers.arcgis.com/labs/javascript/configure-pop-ups/">
+    https://developers.arcgis.com/labs/javascript/configure-pop-ups/</a>. A 1 month token was aqquired from
+<a href="https://luna.flemingcollege.ca/arcgis/tokens/generateToken">https://luna.flemingcollege.ca/arcgis/tokens/generateToken</a>
+ and used to reference the NiconnelCanadaPro layer directly from the Luna Server.</p>
+</body>
+</html>
